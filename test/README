@@ -1,0 +1,35 @@
+# LSF Web Service client example code with openapi python 
+
+Prepare Environment:
+ following ../README.md 
+ 1). install pyhton 3.7+  in client host
+ 2). install the LSF Web Service Client API
+    # cd ../
+    #python setup.py install 
+
+
+ 3). install LSF Web Service Server by following steps in the slides
+    #lwsinstall.sh
+
+ 4). enable https and start the LSF Web Service
+
+Edit sample file to use your own username/password and LSF Web Service URL
+  for example: test_logon.py
+
+  json = '{"name":"USER1", "pass":“PASSWORD"}'
+  configuration = openapi_client.Configuration(
+    host = "https://YOUR_LWS_HOST:8448/lsf",
+    ssl_ca_cert = "cacert.pem"
+   )
+
+Run the sample test:
+
+ 1). python test_logon.py
+     copy the value of "token" from output
+ 2). export API_KEY=[token_value] , for example:
+     $export  API_KEY='georgeg"2024-04-11T00:12:02Z"OfwaNMjD9COggjsWkX5cKQDylYeD3OSqTTCXtOdcYUDc6OMsk30OfprskGgc2s87hvTD8s/TS5O8dcaDRSVe48Wy+xYyzqscqJEvh0ikPOnr7cqLWgeRm66zHd7tXeVW"i/zLeaSG0FiKU5geUUtETQ=='
+
+ 3). run other test, for example:
+     $ python test_list_repos.py
+The response of FileOperationsApi->list_repos:
+Repositories(repos=[RepositoryBean(name='all', path='/home/georgeg/')]) 
