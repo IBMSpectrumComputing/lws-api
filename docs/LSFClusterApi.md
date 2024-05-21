@@ -1,4 +1,4 @@
-# openapi_client.LSFClusterApi
+# lsf_client.LSFClusterApi
 
 All URIs are relative to *http://localhost:8088/lsf*
 
@@ -20,14 +20,14 @@ Execute LSF command
 * Api Key Authentication (LSF-Web-Service-authentication):
 
 ```python
-import openapi_client
-from openapi_client.models.lsfcli_result import LSFCLIResult
-from openapi_client.rest import ApiException
+import lsf_client
+from lsf_client.models.lsfcli_result import LSFCLIResult
+from lsf_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8088/lsf
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = lsf_client.Configuration(
     host = "http://localhost:8088/lsf"
 )
 
@@ -43,9 +43,9 @@ configuration.api_key['LSF-Web-Service-authentication'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['LSF-Web-Service-authentication'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with lsf_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LSFClusterApi(api_client)
+    api_instance = lsf_client.LSFClusterApi(api_client)
     command = 'command_example' # str | 
     env = 'env_example' # str | A string of JSON Object which contains an array of environment variables' key-value pair to be used in LSF command (optional)
 
@@ -104,14 +104,14 @@ Get LSF cluster information
 * Api Key Authentication (LSF-Web-Service-authentication):
 
 ```python
-import openapi_client
-from openapi_client.models.lsf_cluster import LSFCluster
-from openapi_client.rest import ApiException
+import lsf_client
+from lsf_client.models.lsf_cluster import LSFCluster
+from lsf_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8088/lsf
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = lsf_client.Configuration(
     host = "http://localhost:8088/lsf"
 )
 
@@ -127,9 +127,9 @@ configuration.api_key['LSF-Web-Service-authentication'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['LSF-Web-Service-authentication'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with lsf_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LSFClusterApi(api_client)
+    api_instance = lsf_client.LSFClusterApi(api_client)
 
     try:
         # Get LSF cluster information

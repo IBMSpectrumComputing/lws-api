@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.repository_bean import RepositoryBean
+from lsf_client.models.repository_bean import RepositoryBean
 
 # TODO update the JSON string below
 json = "{}"

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.lsf_cluster import LSFCluster
+from lsf_client.models.lsf_cluster import LSFCluster
 
 # TODO update the JSON string below
 json = "{}"

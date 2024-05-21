@@ -16,11 +16,11 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from openapi_client.models.return_message import ReturnMessage
+from lsf_client.models.return_message import ReturnMessage
 
-from openapi_client.api_client import ApiClient, RequestSerialized
-from openapi_client.api_response import ApiResponse
-from openapi_client.rest import RESTResponseType
+from lsf_client.api_client import ApiClient, RequestSerialized
+from lsf_client.api_response import ApiResponse
+from lsf_client.rest import RESTResponseType
 
 
 class PingApi:

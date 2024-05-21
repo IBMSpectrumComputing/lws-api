@@ -1,12 +1,12 @@
 import os
-import openapi_client
-from openapi_client.models.lsfcli_result import LSFCLIResult
-from openapi_client.rest import ApiException
+import lsf_client
+from lsf_client.models.lsfcli_result import LSFCLIResult
+from lsf_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8080/lsf
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = lsf_client.Configuration(
     #host = "http://fp14-rh9x-1:8088/lsf",
     host = "https://fp14-rh9x-1:8448/lsf",
     ssl_ca_cert = "cacert.pem"
@@ -24,9 +24,9 @@ configuration.api_key['LSF-Web-Service-authentication'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['LSF-Web-Service-authentication'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with lsf_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.LSFClusterApi(api_client)
+    api_instance = lsf_client.LSFClusterApi(api_client)
     command = 'bjobs -u all' # str |
     env = '' # str | A string of JSON Object which contains an array of environment variables' key-value
 

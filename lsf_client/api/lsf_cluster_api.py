@@ -19,12 +19,12 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
-from openapi_client.models.lsfcli_result import LSFCLIResult
-from openapi_client.models.lsf_cluster import LSFCluster
+from lsf_client.models.lsfcli_result import LSFCLIResult
+from lsf_client.models.lsf_cluster import LSFCluster
 
-from openapi_client.api_client import ApiClient, RequestSerialized
-from openapi_client.api_response import ApiResponse
-from openapi_client.rest import RESTResponseType
+from lsf_client.api_client import ApiClient, RequestSerialized
+from lsf_client.api_response import ApiResponse
+from lsf_client.rest import RESTResponseType
 
 
 class LSFClusterApi:

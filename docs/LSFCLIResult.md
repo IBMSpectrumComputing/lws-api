@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.lsfcli_result import LSFCLIResult
+from lsf_client.models.lsfcli_result import LSFCLIResult
 
 # TODO update the JSON string below
 json = "{}"

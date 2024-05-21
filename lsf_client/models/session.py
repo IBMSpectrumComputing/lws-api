@@ -17,18 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.repository_bean import RepositoryBean
+from lsf_client.models.lsf_cluster import LSFCluster
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Repositories(BaseModel):
+class Session(BaseModel):
     """
-    Repositories
+    Session
     """ # noqa: E501
-    repos: Optional[List[RepositoryBean]] = None
-    __properties: ClassVar[List[str]] = ["repos"]
+    token: Optional[StrictStr] = None
+    cluster: Optional[LSFCluster] = None
+    __properties: ClassVar[List[str]] = ["token", "cluster"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +49,7 @@ class Repositories(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Repositories from a JSON string"""
+        """Create an instance of Session from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,18 +70,14 @@ class Repositories(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in repos (list)
-        _items = []
-        if self.repos:
-            for _item in self.repos:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['repos'] = _items
+        # override the default output from pydantic by calling `to_dict()` of cluster
+        if self.cluster:
+            _dict['cluster'] = self.cluster.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Repositories from a dict"""
+        """Create an instance of Session from a dict"""
         if obj is None:
             return None
 
@@ -88,7 +85,8 @@ class Repositories(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "repos": [RepositoryBean.from_dict(_item) for _item in obj["repos"]] if obj.get("repos") is not None else None
+            "token": obj.get("token"),
+            "cluster": LSFCluster.from_dict(obj["cluster"]) if obj.get("cluster") is not None else None
         })
         return _obj
 

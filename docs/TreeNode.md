@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.tree_node import TreeNode
+from lsf_client.models.tree_node import TreeNode
 
 # TODO update the JSON string below
 json = "{}"

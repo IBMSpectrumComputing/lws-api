@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.return_message import ReturnMessage
+from lsf_client.models.return_message import ReturnMessage
 
 # TODO update the JSON string below
 json = "{}"

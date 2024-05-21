@@ -1,4 +1,4 @@
-# openapi_client.PingApi
+# lsf_client.PingApi
 
 All URIs are relative to *http://localhost:8088/lsf*
 
@@ -19,14 +19,14 @@ Ping service availability
 * Api Key Authentication (LSF-Web-Service-authentication):
 
 ```python
-import openapi_client
-from openapi_client.models.return_message import ReturnMessage
-from openapi_client.rest import ApiException
+import lsf_client
+from lsf_client.models.return_message import ReturnMessage
+from lsf_client.rest import ApiException
 from pprint import pprint
 
 # Defining the host is optional and defaults to http://localhost:8088/lsf
 # See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
+configuration = lsf_client.Configuration(
     host = "http://localhost:8088/lsf"
 )
 
@@ -42,9 +42,9 @@ configuration.api_key['LSF-Web-Service-authentication'] = os.environ["API_KEY"]
 # configuration.api_key_prefix['LSF-Web-Service-authentication'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
+with lsf_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = openapi_client.PingApi(api_client)
+    api_instance = lsf_client.PingApi(api_client)
 
     try:
         # Ping service

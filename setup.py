@@ -20,7 +20,7 @@ from setuptools import setup, find_packages  # noqa: H301
 #
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
-NAME = "openapi-client"
+NAME = "lsf_client"
 VERSION = "1.0.0"
 PYTHON_REQUIRES = ">=3.7"
 REQUIRES = [
@@ -45,5 +45,5 @@ setup(
     long_description="""\
     LSF Web Service
     """,  # noqa: E501
-    package_data={"openapi_client": ["py.typed"]},
+    package_data={"lsf_client": ["py.typed"]},
 )

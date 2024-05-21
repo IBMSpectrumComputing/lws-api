@@ -17,19 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.lsf_cluster import LSFCluster
+from lsf_client.models.error import Error
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Session(BaseModel):
+class ErrorMessage(BaseModel):
     """
-    Session
+    ErrorMessage
     """ # noqa: E501
-    token: Optional[StrictStr] = None
-    cluster: Optional[LSFCluster] = None
-    __properties: ClassVar[List[str]] = ["token", "cluster"]
+    status_code: Optional[StrictInt] = None
+    errors: Optional[List[Error]] = None
+    __properties: ClassVar[List[str]] = ["status_code", "errors"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +49,7 @@ class Session(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Session from a JSON string"""
+        """Create an instance of ErrorMessage from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,14 +70,18 @@ class Session(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of cluster
-        if self.cluster:
-            _dict['cluster'] = self.cluster.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
+        _items = []
+        if self.errors:
+            for _item in self.errors:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['errors'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Session from a dict"""
+        """Create an instance of ErrorMessage from a dict"""
         if obj is None:
             return None
 
@@ -85,8 +89,8 @@ class Session(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "token": obj.get("token"),
-            "cluster": LSFCluster.from_dict(obj["cluster"]) if obj.get("cluster") is not None else None
+            "status_code": obj.get("status_code"),
+            "errors": [Error.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None
         })
         return _obj
 

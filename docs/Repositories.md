@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 ## Example
 
 ```python
-from openapi_client.models.repositories import Repositories
+from lsf_client.models.repositories import Repositories
 
 # TODO update the JSON string below
 json = "{}"

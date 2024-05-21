@@ -17,19 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.error import Error
+from lsf_client.models.repository_bean import RepositoryBean
 from typing import Optional, Set
 from typing_extensions import Self
 
-class ErrorMessage(BaseModel):
+class Repositories(BaseModel):
     """
-    ErrorMessage
+    Repositories
     """ # noqa: E501
-    status_code: Optional[StrictInt] = None
-    errors: Optional[List[Error]] = None
-    __properties: ClassVar[List[str]] = ["status_code", "errors"]
+    repos: Optional[List[RepositoryBean]] = None
+    __properties: ClassVar[List[str]] = ["repos"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +48,7 @@ class ErrorMessage(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ErrorMessage from a JSON string"""
+        """Create an instance of Repositories from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -70,18 +69,18 @@ class ErrorMessage(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in errors (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in repos (list)
         _items = []
-        if self.errors:
-            for _item in self.errors:
+        if self.repos:
+            for _item in self.repos:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['errors'] = _items
+            _dict['repos'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ErrorMessage from a dict"""
+        """Create an instance of Repositories from a dict"""
         if obj is None:
             return None
 
@@ -89,8 +88,7 @@ class ErrorMessage(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "status_code": obj.get("status_code"),
-            "errors": [Error.from_dict(_item) for _item in obj["errors"]] if obj.get("errors") is not None else None
+            "repos": [RepositoryBean.from_dict(_item) for _item in obj["repos"]] if obj.get("repos") is not None else None
         })
         return _obj
 
